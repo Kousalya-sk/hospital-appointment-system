@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Dashboard | MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="navbar">
+
+    <h2>🏥 MediCare</h2>
+
+    <div>
+
+        <a href="{{ url_for('dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('doctors') }}">
+            Doctors
+        </a>
+
+        <a href="{{ url_for('my_appointments') }}">
+            Appointments
+        </a>
+
+        <a href="{{ url_for('profile') }}">
+            Profile
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     PATIENT DASHBOARD
+     ===================================================== -->
+
+<main class="patient-dashboard">
+
+
+    <!-- =================================================
+         WELCOME HEADER
+         ================================================= -->
+
+    <section class="dashboard-header">
+
+        <div>
+
+            <span class="dashboard-tag">
+                🩺 PATIENT PORTAL
+            </span>
+
+            <h1>
+                Welcome back, {{ name }} 👋
+            </h1>
+
+            <p>
+                Manage your healthcare appointments
+                and stay connected with your doctors.
+            </p>
+
+        </div>
+
+
+        <div class="patient-icon">
+            👤
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATISTICS
+         ================================================= -->
+
+    <section class="patient-stats">
+
+
+        <!-- TOTAL APPOINTMENTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📅
+            </div>
+
+            <div>
+
+                <span>
+                    Appointments
+                </span>
+
+                <h2>
+                    {{ total_appointments }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PENDING -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🟡
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <h2>
+                    {{ pending_appointments }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COMPLETED -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🟢
+            </div>
+
+            <div>
+
+                <span>
+                    Completed
+                </span>
+
+                <h2>
+                    {{ completed_appointments }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- AVAILABLE DOCTORS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍⚕️
+            </div>
+
+            <div>
+
+                <span>
+                    Doctors
+                </span>
+
+                <h2>
+                    {{ total_doctors }}
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         MAIN DASHBOARD GRID
+         ================================================= -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- =================================================
+             UPCOMING APPOINTMENT
+             ================================================= -->
+
+        <div class="dashboard-card appointment-highlight">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="small-title">
+                        NEXT APPOINTMENT
+                    </span>
+
+                    <h2>
+                        📅 Upcoming Appointment
+                    </h2>
+
+                </div>
+
+
+                <!-- LIVE CLOCK -->
+
+                <span class="live-badge">
+
+                    <span class="live-dot"></span>
+
+                    LIVE •
+                    <span id="liveClock">
+                        --:--:--
+                    </span>
+
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 IF APPOINTMENT EXISTS
+                 ================================================= -->
+
+            {% if upcoming_appointment %}
+
+
+                <!-- DOCTOR INFORMATION -->
+
+                <div class="doctor-info">
+
+                    <div class="doctor-avatar">
+                        👨‍⚕️
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Dr. {{ upcoming_appointment[0] }}
+                        </h3>
+
+                        <p>
+                            {{ upcoming_appointment[1] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- APPOINTMENT DETAILS -->
+
+                <div class="appointment-details">
+
+
+                    <!-- DATE -->
+
+                    <div>
+
+                        <span>
+                            📅 Date
+                        </span>
+
+                        <strong>
+                            {{ upcoming_appointment[2] }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- TIME -->
+
+                    <div>
+
+                        <span>
+                            🕐 Time
+                        </span>
+
+                        <strong>
+                            {{ upcoming_appointment[3] }}
+                        </strong>
+
+                    </div>
+
+
+                    <!-- REASON -->
+
+                    <div>
+
+                        <span>
+                            📝 Reason
+                        </span>
+
+                        <strong>
+                            {{ upcoming_appointment[4] }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- APPOINTMENT STATUS -->
+
+                <div class="status-row">
+
+                    <span>
+                        Appointment Status
+                    </span>
+
+
+                    <span class="status-badge
+
+                    {% if upcoming_appointment[5] == 'Accepted' %}
+                        status-accepted
+
+                    {% elif upcoming_appointment[5] == 'Completed' %}
+                        status-completed
+
+                    {% elif upcoming_appointment[5] == 'Cancelled' %}
+                        status-cancelled
+
+                    {% elif upcoming_appointment[5] == 'Rejected' %}
+                        status-rejected
+
+                    {% else %}
+                        status-pending
+
+                    {% endif %}
+
+                    ">
+
+                        {{ upcoming_appointment[5] }}
+
+                    </span>
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- =================================================
+                     NO UPCOMING APPOINTMENT
+                     ================================================= -->
+
+                <div class="empty-appointment">
+
+                    <div>
+                        📅
+                    </div>
+
+                    <h3>
+                        No upcoming appointments
+                    </h3>
+
+                    <p>
+                        You don't have any upcoming
+                        appointments.
+                    </p>
+
+                    <a href="{{ url_for('doctors') }}"
+                       class="btn">
+
+                        Find a Doctor
+
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+             ================================================= -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="small-title">
+                        QUICK ACCESS
+                    </span>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="quick-actions">
+
+
+                <!-- FIND DOCTOR -->
+
+                <a href="{{ url_for('doctors') }}"
+                   class="quick-action">
+
+                    <div class="quick-icon">
+                        👨‍⚕️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Find a Doctor
+                        </strong>
+
+                        <span>
+                            Browse specialists
+                        </span>
+
+                    </div>
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <!-- MY APPOINTMENTS -->
+
+                <a href="{{ url_for('my_appointments') }}"
+                   class="quick-action">
+
+                    <div class="quick-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            My Appointments
+                        </strong>
+
+                        <span>
+                            View appointment history
+                        </span>
+
+                    </div>
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <!-- PROFILE -->
+
+                <a href="{{ url_for('profile') }}"
+                   class="quick-action">
+
+                    <div class="quick-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            My Profile
+                        </strong>
+
+                        <span>
+                            Update personal details
+                        </span>
+
+                    </div>
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         HEALTHCARE TIP
+         ================================================= -->
+
+    <section class="health-tip">
+
+
+        <div class="tip-icon">
+            💡
+        </div>
+
+
+        <div>
+
+            <h3>
+                Healthcare Tip
+            </h3>
+
+            <p>
+                Keep your profile information updated
+                so doctors can provide better care.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     LIVE CLOCK
+     ===================================================== -->
+
+<script>
+
+function updateLiveClock() {
+
+    const now = new Date();
+
+    const hours =
+        String(now.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+    const clock =
+        document.getElementById("liveClock");
+
+    if (clock) {
+
+        clock.textContent =
+            `${hours}:${minutes}:${seconds}`;
+
+    }
+
+}
+
+
+updateLiveClock();
+
+setInterval(updateLiveClock, 1000);
+
+</script>
+
+
+</body>
+
+</html>

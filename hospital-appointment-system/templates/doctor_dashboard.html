@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Dashboard - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+            <a href="/doctor-dashboard">Dashboard</a>
+            <a href="/doctor-appointments">Appointments</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+    <section class="hero">
+
+        <h1>Welcome, Dr. {{ name }}! 👨‍⚕️</h1>
+
+        <p>
+            Manage your patient appointments from here.
+        </p>
+
+        <br>
+
+        <a href="/doctor-appointments" class="btn">
+            View Appointments
+        </a>
+
+    </section>
+
+</body>
+
+</html>

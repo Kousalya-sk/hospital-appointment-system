@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Book Appointment - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="form-container">
+
+        <h1>Book Appointment 📅</h1>
+
+        <p>
+            Booking appointment with:
+            <strong>{{ doctor[1] }}</strong>
+        </p>
+
+        <br>
+
+        <p>
+            <strong>Department:</strong>
+            {{ doctor[2] }}
+        </p>
+
+        <p>
+            <strong>Specialization:</strong>
+            {{ doctor[3] }}
+        </p>
+
+        <form method="POST">
+
+            <label>Appointment Date</label>
+
+            <input type="date"
+                   name="appointment_date"
+                   required>
+
+
+            <label>Appointment Time</label>
+
+            <input type="time"
+                   name="appointment_time"
+                   required>
+
+
+            <label>Reason for Visit</label>
+
+            <textarea
+                name="reason"
+                placeholder="Describe your reason for visiting"
+                rows="4"
+                required></textarea>
+
+
+            <button type="submit" class="btn">
+                Book Appointment
+            </button>
+
+        </form>
+
+    </section>
+
+</body>
+
+</html>

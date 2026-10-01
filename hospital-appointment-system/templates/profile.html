@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('doctors') }}">
+                Doctors
+            </a>
+
+            <a href="{{ url_for('my_appointments') }}">
+                My Appointments
+            </a>
+
+            <a href="{{ url_for('profile') }}">
+                My Profile
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="profile-section">
+
+        <h1>My Profile 👤</h1>
+
+        <p>
+            View and update your personal information.
+        </p>
+
+
+        <div class="profile-card">
+
+            <div class="profile-info">
+
+                <label>Name</label>
+
+                <p>{{ patient[1] }}</p>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <label>Email</label>
+
+                <p>{{ patient[2] }}</p>
+
+            </div>
+
+
+            <form method="POST"
+                  action="{{ url_for('profile') }}">
+
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        value="{{ patient[3] if patient[3] else '' }}"
+                        placeholder="Enter your age"
+                        min="1"
+                        max="120"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <select id="gender"
+                            name="gender"
+                            required>
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option value="Male"
+                            {% if patient[4] == "Male" %}selected{% endif %}>
+                            Male
+                        </option>
+
+                        <option value="Female"
+                            {% if patient[4] == "Female" %}selected{% endif %}>
+                            Female
+                        </option>
+
+                        <option value="Other"
+                            {% if patient[4] == "Other" %}selected{% endif %}>
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value="{{ patient[5] if patient[5] else '' }}"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="address">
+                        Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        name="address"
+                        placeholder="Enter your address"
+                        rows="4"
+                        required>{{ patient[6] if patient[6] else '' }}</textarea>
+
+                </div>
+
+
+                <button type="submit" class="btn">
+                    Update Profile
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

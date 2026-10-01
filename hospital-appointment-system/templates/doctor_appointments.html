@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Appointments - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+            <a href="/doctor-dashboard">Dashboard</a>
+            <a href="/doctor-appointments">Appointments</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+    <section class="appointments-section">
+
+        <h1>Patient Appointments 📋</h1>
+
+        {% if appointments %}
+
+        <div class="appointment-container">
+
+            {% for appointment in appointments %}
+
+            <div class="appointment-card">
+
+                <h2>👤 {{ appointment[1] }}</h2>
+
+                <p>
+                    <strong>Date:</strong>
+                    {{ appointment[2] }}
+                </p>
+
+                <p>
+                    <strong>Time:</strong>
+                    {{ appointment[3] }}
+                </p>
+
+                <p>
+                    <strong>Reason:</strong>
+                    {{ appointment[4] }}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    {{ appointment[5] }}
+                </p>
+
+                {% if appointment[5] == "Pending" %}
+
+                <form method="POST"
+                      action="/update-appointment/{{ appointment[0] }}">
+
+                    <button type="submit"
+                            name="status"
+                            value="Accepted"
+                            class="btn">
+                        Accept
+                    </button>
+
+                    <button type="submit"
+                            name="status"
+                            value="Rejected"
+                            class="cancel-btn">
+                        Reject
+                    </button>
+
+                </form>
+
+                {% elif appointment[5] == "Accepted" %}
+
+                <form method="POST"
+                      action="/update-appointment/{{ appointment[0] }}">
+
+                    <button type="submit"
+                            name="status"
+                            value="Completed"
+                            class="btn">
+                        Mark as Completed
+                    </button>
+
+                </form>
+
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p>No appointments found.</p>
+
+        {% endif %}
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Patients - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+
+            <a href="{{ url_for('admin_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Manage Patients -->
+
+    <section class="doctors-section">
+
+        <h1>Manage Patients 👥</h1>
+
+        <p>
+            View and manage registered hospital patients.
+        </p>
+
+
+        <!-- Patients -->
+
+        <div class="doctor-container">
+
+            {% for patient in patients %}
+
+            <div class="doctor-card">
+
+                <h2>
+                    👤 {{ patient[1] }}
+                </h2>
+
+                <p>
+                    <strong>Email:</strong>
+                    {{ patient[2] }}
+                </p>
+
+                <p>
+                    <strong>Age:</strong>
+                    {{ patient[3] if patient[3] else "Not provided" }}
+                </p>
+
+                <p>
+                    <strong>Gender:</strong>
+                    {{ patient[4] if patient[4] else "Not provided" }}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    {{ patient[5] if patient[5] else "Not provided" }}
+                </p>
+
+                <p>
+                    <strong>Address:</strong>
+                    {{ patient[6] if patient[6] else "Not provided" }}
+                </p>
+
+                <a
+                    href="{{ url_for('delete_patient', patient_id=patient[0]) }}"
+                    class="cancel-btn"
+                    onclick="return confirm('Are you sure you want to delete this patient?');"
+                >
+                    Delete Patient
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

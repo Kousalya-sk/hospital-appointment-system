@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+            <a href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Admin Dashboard -->
+    <section class="hero">
+
+        <h1>Welcome, Admin! 👋</h1>
+
+        <p>
+            Manage the MediCare Hospital system from one place.
+        </p>
+
+        <br>
+
+
+        <!-- Admin Options -->
+
+        <div>
+
+            <a href="{{ url_for('admin_doctors') }}" class="btn">
+                👨‍⚕️ Manage Doctors
+            </a>
+
+            <a href="#" class="btn">
+                🧑‍🤝‍🧑 Manage Patients
+            </a>
+
+            <a href="{{ url_for('admin_appointments') }}" class="btn">
+    Manage Appointments
+</a>
+            <a href="{{ url_for('admin_departments') }}" class="btn">
+    🏥 Manage Departments
+</a>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

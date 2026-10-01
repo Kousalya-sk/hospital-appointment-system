@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MediCare | Smart Hospital Appointment System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <h2>🏥 MediCare</h2>
+
+    <div>
+
+        <a href="{{ url_for('home') }}">
+            Home
+        </a>
+
+        <a href="{{ url_for('doctors') }}">
+            Doctors
+        </a>
+
+        <a href="{{ url_for('login') }}">
+            Login
+        </a>
+
+        <a href="{{ url_for('register') }}">
+            Register
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+
+<section class="home-hero">
+
+    <div class="home-content">
+
+        <span class="tag">
+            🩺 SMART HEALTHCARE PLATFORM
+        </span>
+
+
+        <h1>
+            Your Health.
+            <br>
+            <span>Our Priority.</span>
+        </h1>
+
+
+        <p>
+
+            MediCare is a smart hospital appointment
+            management system designed to make healthcare
+            simple, organized and accessible.
+
+        </p>
+
+
+        <div class="home-actions">
+
+            <a href="{{ url_for('login') }}"
+               class="btn">
+
+                📅 Book an Appointment
+
+            </a>
+
+
+            <a href="{{ url_for('doctors') }}"
+               class="secondary-btn">
+
+                👨‍⚕️ Explore Doctors
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE HEALTHCARE CARD -->
+
+    <div class="home-visual">
+
+        <div class="medical-circle">
+
+            🩺
+
+        </div>
+
+
+        <div class="floating-card card-one">
+
+            <span>🧑‍⚕️</span>
+
+            <div>
+                <strong>Expert Doctors</strong>
+                <small>Qualified Specialists</small>
+            </div>
+
+        </div>
+
+
+        <div class="floating-card card-two">
+
+            <span>📅</span>
+
+            <div>
+                <strong>Easy Booking</strong>
+                <small>Quick Appointments</small>
+            </div>
+
+        </div>
+
+
+        <div class="floating-card card-three">
+
+            <span>🔒</span>
+
+            <div>
+                <strong>Secure Records</strong>
+                <small>Protected Information</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
+<section class="features-section">
+
+    <div class="section-heading">
+
+        <span>WHY MEDICARE?</span>
+
+        <h2>
+            Healthcare made simpler
+        </h2>
+
+        <p>
+            Everything you need to manage your
+            hospital appointments in one place.
+        </p>
+
+    </div>
+
+
+    <div class="feature-container">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👨‍⚕️
+            </div>
+
+            <h3>
+                Find Doctors
+            </h3>
+
+            <p>
+                Explore doctors based on their
+                department, specialization and
+                experience.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📅
+            </div>
+
+            <h3>
+                Book Appointments
+            </h3>
+
+            <p>
+                Select a doctor, choose your
+                preferred date and time and
+                book your appointment easily.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📋
+            </div>
+
+            <h3>
+                Track Appointments
+            </h3>
+
+            <p>
+                View upcoming and previous
+                appointments along with their
+                current status.
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🔐
+            </div>
+
+            <h3>
+                Secure Access
+            </h3>
+
+            <p>
+                Separate access for patients,
+                doctors and administrators keeps
+                the system organized.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     HOW IT WORKS
+===================================================== -->
+
+<section class="steps-section">
+
+    <div class="section-heading">
+
+        <span>HOW IT WORKS</span>
+
+        <h2>
+            Get your appointment in 3 steps
+        </h2>
+
+    </div>
+
+
+    <div class="steps-container">
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>
+                Create Account
+            </h3>
+
+            <p>
+                Register as a patient and
+                create your healthcare profile.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-line"></div>
+
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>
+                Choose Doctor
+            </h3>
+
+            <p>
+                Browse available doctors and
+                select your preferred specialist.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-line"></div>
+
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>
+                Book Appointment
+            </h3>
+
+            <p>
+                Select a convenient date and
+                time and submit your appointment.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div>
+
+        <span>
+            🏥 MEDICARE
+        </span>
+
+        <h2>
+            Ready to manage your healthcare?
+        </h2>
+
+        <p>
+            Create your account and take control
+            of your appointments today.
+        </p>
+
+        <a href="{{ url_for('register') }}"
+           class="btn">
+
+            Get Started →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <h3>
+            🏥 MediCare
+        </h3>
+
+        <p>
+            Smart Hospital Appointment Management System
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <p>
+            © 2026 MediCare. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

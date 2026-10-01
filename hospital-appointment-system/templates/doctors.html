@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctors - MediCare</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <h2>🏥 MediCare</h2>
+
+        <div>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/doctors">Doctors</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <section class="doctors-section">
+
+        <h1>Our Doctors 👨‍⚕️</h1>
+
+        <p>Choose a doctor for your appointment.</p>
+
+
+        <div class="doctor-container">
+
+            {% for doctor in doctors %}
+
+            <div class="doctor-card">
+
+                <h2>👨‍⚕️ {{ doctor[1] }}</h2>
+
+                <p>
+                    <strong>Department:</strong>
+                    {{ doctor[2] }}
+                </p>
+
+                <p>
+                    <strong>Specialization:</strong>
+                    {{ doctor[3] }}
+                </p>
+
+                <p>
+                    <strong>Experience:</strong>
+                    {{ doctor[4] }} years
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    {{ doctor[5] }}
+                </p>
+
+                <a href="/book-appointment/{{ doctor[0] }}" class="btn">
+                    Book Appointment
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
